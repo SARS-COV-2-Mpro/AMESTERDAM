@@ -2,22 +2,21 @@ const express = require('express');
 const axios = require('axios');
 const app = express();
 
-const NEXT_PROXY = 'https://healthy-whale-82.deno.dev';
+const DENO_PROXY = 'https://healthy-whale-82.deno.dev';
 
-// Remove the separate '/' route, let all() handle everything
+app.get('/', (req, res) => {
+    res.send('Amsterdam Proxy → Deno Germany → Binance');
+});
+
 app.all('*', async (req, res) => {
-    if (req.path === '/') {
-        return res.send('Amsterdam Proxy Alive');
-    }
-    
     try {
         const response = await axios({
             method: req.method,
-            url: NEXT_PROXY + req.path,
-            params: req.query,
+            url: DENO_PROXY + req.originalUrl,
             headers: {
                 'x-mbx-apikey': req.headers['x-mbx-apikey'] || ''
-            }
+            },
+            timeout: 10000
         });
         res.json(response.data);
     } catch (e) {
