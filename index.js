@@ -4,7 +4,12 @@ const app = express();
 
 const NEXT_PROXY = 'https://healthy-whale-82.deno.dev';
 
-app.all('/*', async (req, res) => {
+// Remove the separate '/' route, let all() handle everything
+app.all('*', async (req, res) => {
+    if (req.path === '/') {
+        return res.send('Amsterdam Proxy Alive');
+    }
+    
     try {
         const response = await axios({
             method: req.method,
@@ -19,7 +24,5 @@ app.all('/*', async (req, res) => {
         res.status(500).json({ error: e.message });
     }
 });
-
-app.get('/', (req, res) => res.send('Amesterdam Proxy Alive'));
 
 app.listen(process.env.PORT || 3000);
