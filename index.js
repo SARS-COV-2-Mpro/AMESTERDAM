@@ -5,7 +5,7 @@ const app = express();
 const DENO_PROXY = 'https://healthy-whale-82.deno.dev';
 
 app.get('/', (req, res) => {
-    res.send('Amsterdam Proxy → Deno Germany → Binance');
+    res.send('Amsterdam → Deno Germany → Binance');
 });
 
 app.all('*', async (req, res) => {
