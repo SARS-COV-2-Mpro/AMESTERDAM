@@ -1,19 +1,12 @@
 {
   "name": "multi-exchange-proxy",
   "version": "1.0.0",
-  "description": "Single proxy for Binance, OKX, Bybit, Gate.io",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "node index.js"
-  },
-  "engines": {
-    "node": ">=14.0.0"
+    "start": "node index.js"
   },
   "dependencies": {
-    "express": "^4.18.2",
-    "node-fetch": "^2.7.0",
-    "cors": "^2.8.5"
-  },
-  "license": "MIT"
+    "express": "4.18.2",
+    "axios": "1.6.0"
+  }
 }
